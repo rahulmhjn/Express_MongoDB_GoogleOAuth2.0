@@ -14,7 +14,7 @@ router.get("/", ensureGuest, (req, res) => {
 // @route   GET /dashboard
 router.get("/dashboard", ensureAuth, async (req, res) => {
   try {
-    const stories = await Story.find({ user: req.user.id }).lean();
+    const stories = await Story.find({ user: req.user._id }).lean();
     res.render("dashboard", {
       name: req.user.firstName,
       stories,
